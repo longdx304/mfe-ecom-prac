@@ -8,11 +8,12 @@ export default () => {
   const history = useHistory();
 
   useEffect(() => {
-    const { onParentNavigate } = mount(ref.current, {
-      onNavigate: ({ pathname: nextPathname }) => {
-        // get the current path from the browser
-        const { pathname } = history.location;
+    // get the current path from the browser
+    const { pathname } = history.location;
 
+    const { onParentNavigate } = mount(ref.current, {
+      initialPath: pathname,
+      onNavigate: ({ pathname: nextPathname }) => {
         // if the current path is not the same as the new path
         // update the browser path
         if (pathname !== nextPathname) {
